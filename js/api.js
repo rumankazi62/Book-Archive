@@ -1,49 +1,72 @@
-
-document.getElementById('error-message').style.display = 'none';
 const searchBook = () => {
-    const searchField = document.getElementById('search-field');
+    const searchField = document.getElementById('searchInput');
     const searchText = searchField.value;
+    
+    // spinner show
+    Spinner('block')
+
     // clear data
     searchField.value = '';
-    document.getElementById('error-message').style.display = 'none';
+    // search text
     if (searchText === '') {
-        // please write something to display
+        inputEmpty('block');
+        Spinner('none')
     }
     else {
         // load data
-        const url = `https://openlibrary.org/search.json?q=${searchText}`;
+        const url =` https://openlibrary.org/search.json?q=${searchText}`;
         fetch(url)
             .then(res => res.json())
             .then(data => displaySearchResult(data.docs))
-            .catch(error => displayError(error));
+            inputEmpty('none');
     }
 }
 
-const displayError = error => {
-    document.getElementById('error-message').style.display = 'block';
-}
-
+// desplay search result
 const displaySearchResult = books => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    // if (books.length == 0) {
+    //  error-message message
+    if (books.length === 0) {
+        resultError('block');
+        Spinner('none');
+    }else{
+        resultError('none')
+    }
+    // Total Search Result 
+       document.getElementById('total-search-result').innerText = books.length; 
         
-    // }
+    //  console.log(books.length);
+
+    // forEach books
     books.forEach(book => {
-        // console.log(book);
-        const imgUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}.jpg`;
         const div = document.createElement('div');
         div.classList.add('col');
+        const imgUrl =` https://covers.openlibrary.org/b/id/${book.cover_i}.jpg`;
+
         div.innerHTML = `
-        
-            <div class="card-body col-6 m-4">
-                <img class="card-img-top" src="${imgUrl}">
-                <h4 class="card-title">Book: ${book.title}</h4>
-                <h5 class="card-title">Author name: ${book.author_name[0]}</h5>
-                <p class="card-text">First published: ${book.first_publish_year}</p>
+            <div class="card-body h-25">
+                <img src="${imgUrl}" class="card-img-top" alt="...">
+                <h3 class="card-title">Book: ${book.title}</h3>
+                <h4 class="card-title">Author: ${book.author_name}</h4>
+                <h5 class="card-title">Publish: ${book.first_publish_year}</h5>
             </div>
-        
         `;
         searchResult.appendChild(div);
-    })
+        Spinner('none');
+    });
+    
+};
+// Input Empty
+const inputEmpty = (inputDisplay)=>{
+    document.getElementById('input-empty').style.display=inputDisplay;
+}
+// result search  error-message 
+const resultError = displayStyle =>{
+    document.getElementById('error-message').style.display =displayStyle;
+}
+
+// Spinner 
+const Spinner = display=>{
+    document.getElementById('spinner').style.display =display;
 }

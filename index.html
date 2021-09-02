@@ -1,39 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Library</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Assinment-6</title>
+    <!-- Bootstrap link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Css -->
+    <style>
+        #error-message{
+    display: none;
+}
+#spinner{
+    display: none;
+}
+#input-empty{
+    display: none;
+}
+    </style>
 </head>
+<body>
+    <header>
+        <h2 class="text-center py-2">Find Your Favorite Book </h2>
+    </header>
+    <!-- main section -->
+    <main>
+        <section class="container ">
+            
+            <!-- input feild btn  -->
+            <div class="input-group mt-5 mb-5 w-50 mx-auto">
+                <input type="text" class="form-control" placeholder="Search you want.." id="searchInput">
+                <button class="btn btn-outline-info" type="button" onclick="searchBook()">
+                    Search
+                </button>
+            </div>
+            <!-- total search result  -->
+            <h6 class="text-center">
+                Total Result: <span id="total-search-result"></span>
+            </h6>
+            <!-- Result Error message -->
+                <h3 id="error-message" class="text-center text-danger">Sorry!! Result not found.</h3>
+            <!-- input feild "" -->
+                <h3 id="input-empty" class="text-center text-danger">Please write something to display.</h3>
+            <!-- Spinner -->
+            <div  class="d-flex justify-content-center">
+                <button id="spinner" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm text-center" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
 
-<body class="bg-gray">
-    <h2 class="text-center text-info">Search your book.</h2>
-    <!-- book search area -->
-    <div class="input-group mb-3 w-50 mx-auto">
-        <input id="search-field" type="text" class="form-control" placeholder="Search your book"
-            aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchBook()" class="btn btn-outline-info" type="button"
-            id="button-search">search</button>
-    </div>
-    <!-- result found part -->
-    <div class="border border-3 border-info rounded">
-      <p class="fs-3 fw-bold text-center my-4">0 result found</p>
-    </div>
-    </div>
-    <!-- book search result part-->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
-    </div>
-    <!-- error message part -->
-    <div>
-        <p id="error-message" class=" text-danger fs-1 mt-4">No result found!!try again.</p>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-  <script src="js/api.js"></script>
+            <!-- Search Result Container -->
+            <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+            </div> 
+
+        </section>     
+    </main>
+    <!-- Footer section -->
+    <footer>
+
+    </footer>
+
+    <!-- Js linking start -->
+    <script src="js/api.js"></script>
 </body>
 </html>
