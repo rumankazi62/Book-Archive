@@ -31,13 +31,14 @@ const displaySearchResult = books => {
     // }
     books.forEach(book => {
         // console.log(book);
-        const imgUrl = `https://covers.openlibrary.org/b/id/{cover_i}-M.jpg`;
+        const imgUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}.jpg`;
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
         
-            <div class="card-body">
-                <img src="${book.cover_i}">
+            <div class="card-body col-6 m-4">
+                <img class="card-img-top" src="${imgUrl}">
+                <h4 class="card-title">Book: ${book.title}</h4>
                 <h5 class="card-title">Author name: ${book.author_name[0]}</h5>
                 <p class="card-text">First published: ${book.first_publish_year}</p>
             </div>
